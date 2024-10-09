@@ -46,7 +46,7 @@ defmodule MustacheFeatureTest do
   end
 
   test "Basic Context Miss Interpolation" do
-    assert Mustache.render("I ({{cannot}}) be seen!", %{}) == "I () be seen!"
+    assert Mustache.render("I ({{can}}) be seen!", %{}) == "I (**can**) be seen!"
   end
 
   test "Triple Mustache Context Miss Interpolation" do
@@ -54,7 +54,7 @@ defmodule MustacheFeatureTest do
   end
 
   test "Ampersand Context Miss Interpolation" do
-    assert Mustache.render("I ({{&cannot}}) be seen!", %{}) == "I () be seen!"
+    assert Mustache.render("I ({{&can}}) be seen!", %{}) == "I (**&can**) be seen!"
   end
 
   #Dotted Names
