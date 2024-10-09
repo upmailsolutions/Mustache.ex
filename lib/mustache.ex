@@ -26,10 +26,10 @@ defmodule Mustache do
           key = String.replace(variable, "&", "") |> String.trim
           data |> indifferent_access(key) |> to_string
         end
-        if value == nil do
-          template
-        else
-          double_mustaches(String.replace(template, "{{#{variable}}}", value), data)
+        case value do
+          nil -> template
+          "" -> double_mustaches(String.replace(template, "{{#{variable}}}", "**#{variable}**"), data)
+          _ -> double_mustaches(String.replace(template, "{{#{variable}}}", value), data)
         end
     end
   end
